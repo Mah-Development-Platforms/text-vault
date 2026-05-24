@@ -663,7 +663,7 @@ async function startGame(id) {
 
   try {
     // 1. Fetch the binary .z3 file from the scripts directory
-    const response = await fetch('scripts/' + g.file);
+    const response = await fetch('./scripts/' + g.file);
     if (!response.ok) throw new Error("Could not load " + g.file);
     const buffer = await response.arrayBuffer();
     const data = new Uint8Array(buffer);
