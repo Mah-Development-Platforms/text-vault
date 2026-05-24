@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZORK ZONE — Text Adventure Arcade</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/ifvms/dist/zvm.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00ff41;
+    --green-dim: #00b32d;
+    --green-glow: rgba(0,255,65,0.15);
+    --green-faint: rgba(0,255,65,0.05);
+    --amber: #ffb000;
+    --amber-dim: #cc8800;
+    --bg: #000000;
+    --bg-panel: #050f05;
+    --bg-card: #030a03;
+    --border: #00ff4133;
+    --border-bright: #00ff4166;
+    --text-dim: #00803a;
+    --scanline: rgba(0,0,0,0.25);
+  }
+
+  html { background: #000; height: 100%; }
+
+  body {
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--bg);
+    color: var(--green);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    animation: flicker 8s infinite;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, var(--scanline) 0px, var(--scanline) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  @keyframes flicker {
+    0%,100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.92; }
+    94% { opacity: 1; }
+    96% { opacity: 0.95; }
+    97% { opacity: 1; }
+  }
+
+  header {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-bright);
+    flex-shrink: 0;
+  }
+
+  .site-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: 900;
+    color: var(--green);
+    text-shadow: 0 0 15px var(--green);
+    letter-spacing: 0.15em;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  nav button {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--text-dim);
+    background: none;
+    border: none;
+    border-right: 1px solid var(--border);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  nav button:hover, nav button.active { color: var(--green); background: var(--green-faint); }
+
+  main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 1.5rem 1rem; display: flex; flex-direction: column; }
+  .page { display: none; height: 100%; }
+  .page.active { display: block; }
+
+  .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+  .game-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.2rem; cursor: pointer; transition: 0.2s; position: relative; }
+  .game-card:hover { border-color: var(--green); box-shadow: 0 0 15px var(--green-glow); }
+  .card-title { font-family: 'VT323', monospace; font-size: 1.6rem; color: var(--green); margin-bottom: 0.5rem; }
+  .play-btn { background: var(--green-dim); border: none; padding: 0.4rem 1rem; cursor: pointer; float: right; color: #000; font-weight: bold; font-family: 'Share Tech Mono'; }
+
+  /* Player Interface */
+  #game-player { display: none; flex-direction: column; height: 100%; border: 1px solid var(--border-bright); background: var(--bg-panel); }
+  #game-player.active { display: flex; }
+
+  .status-bar { display: flex; justify-content: space-between; padding: 0.5rem 1rem; background: #111; border-bottom: 1px solid var(--border); font-size: 0.8rem; color: var(--amber); font-family: 'VT323'; letter-spacing: 1px; }
+  .game-screen { flex: 1; padding: 1.5rem; overflow-y: auto; line-height: 1.6; font-size: 1.05rem; scroll-behavior: smooth; }
+  .input-row { display: flex; align-items: center; padding: 0.8rem 1rem; background: #000; border-top: 1px solid var(--border-bright); }
+  .game-input { flex: 1; background: none; border: none; color: var(--amber); outline: none; font-family: 'Share Tech Mono'; font-size: 1.1rem; }
+
+  .output-line { margin-bottom: 0.6rem; white-space: pre-wrap; }
+  .system { color: #555; font-size: 0.8rem; font-style: italic; }
+  .error { color: #ff4040; font-weight: bold; }
+  .success { color: #00ffaa; }
+  .player-input { color: var(--amber-dim); font-weight: bold; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-logo">ZORK ZONE</div>
+</header>
+
+<nav id="main-nav">
+  <button class="active" onclick="showPage('arcade', this)">[ ARCADE ]</button>
+  <button onclick="showPage('about', this)">[ HOW TO PLAY ]</button>
+</nav>
+
+<main>
+  <div class="page active" id="page-arcade">
+    <div class="game-grid" id="game-grid"></div>
+  </div>
+
+  <div class="page" id="page-about">
+    <div style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
+      <h2 style="color:var(--amber); font-family:'VT323'; font-size: 2rem;">How to Play</h2>
+      <p>Interactive Fiction is played by typing commands in plain English.</p>
+      <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--green-dim);">
+        <li><b>Movement:</b> Type NORTH, SOUTH, UP, or just N, S, U.</li>
+        <li><b>Interaction:</b> TAKE LAMP, OPEN MAILBOX, READ BROCHURE.</li>
+        <li><b>System:</b> SAVE to store progress, RESTORE to load, LOOK to see surroundings.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="game-player">
+    <div class="status-bar">
+      <span id="status-location">LOCATION: STANDBY</span>
+      <span id="status-score">SCORE: 0 | MOVES: 0</span>
+    </div>
+    <div class="game-screen" id="game-screen"></div>
+    <div class="input-row">
+      <span style="margin-right:10px; color: var(--green); font-weight: bold;">&gt;</span>
+      <input class="game-input" id="game-input" type="text" autofocus autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+</main>
+
+<script>
+// Game Library
+const GAMES = [
+  { id: 'zork1', title: 'ZORK I: THE GREAT UNDERGROUND EMPIRE', author: 'Infocom', file: 'zork1.z3' },
+  { id: 'zork1_v5', title: 'ZORK I (Version 5 Edition)', author: 'Infocom', file: 'zork1.z5' }
+];
+
+let currentEngine = null;
+
+// Helper: Custom print function to avoid conflict with window.print()
+function printToScreen(text, cls = '') {
+  const screen = document.getElementById('game-screen');
+  if (!text.trim() && cls === '') return; // Skip empty lines unless styled
+
+  const div = document.createElement('div');
+  div.className = 'output-line ' + cls;
+  div.textContent = text;
+  screen.appendChild(div);
+  screen.scrollTop = screen.scrollHeight;
+}
+
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('game-player').classList.remove('active');
+  document.getElementById('main-nav').style.display = 'flex';
+  
+  const target = document.getElementById('page-' + id);
+  if (target) target.classList.add('active');
+
+  if (btn) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+
+async function startGame(id) {
+  const g = GAMES.find(x => x.id === id);
+  
+  // Transition UI
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('main-nav').style.display = 'none';
+  document.getElementById('game-player').classList.add('active');
+  document.getElementById('game-screen').innerHTML = '';
+  
+  printToScreen('--- ENGINE COLD BOOT ---', 'system');
+  printToScreen(`Loading: ${g.file}...`, 'system');
+
+  try {
+    const response = await fetch(`./scripts/${g.file}`);
+    if (!response.ok) throw new Error("File not found in /scripts/ directory.");
+    const buffer = await response.arrayBuffer();
+    const data = new Uint8Array(buffer);
+
+    // 1. Instantiate the Z-Machine Engine
+    currentEngine = new ZVM();
+
+    // 2. THE GLK SHIM (The Bridge)
+    // This object satisfies the "Reference to Glk is required" error
+    // by providing the basic functions the engine needs to "talk" to the screen.
+    currentEngine.glk = {
+      window_open: () => 1,
+      window_clear: () => { document.getElementById('game-screen').innerHTML = ''; },
+      window_get_rock: () => 0,
+      set_window: () => {},
+      window_move_cursor: () => {},
+      put_string: (text) => printToScreen(text),
+      char_to_lower: (c) => String.fromCharCode(c).toLowerCase().charCodeAt(0),
+      char_to_upper: (c) => String.fromCharCode(c).toUpperCase().charCodeAt(0),
+      select: (ev) => { if (currentEngine.on_select) currentEngine.on_select(ev); },
+      fatal_error: (msg) => printToScreen("ENGINE FATAL ERROR: " + msg, 'error')
+    };
+
+    // 3. UI Attachment
+    const myUI = {
+      print: (text) => printToScreen(text),
+      updateStatus: (loc, sc, mv) => {
+        document.getElementById('status-location').textContent = 'LOCATION: ' + loc.toUpperCase();
+        document.getElementById('status-score').textContent = `SCORE: ${sc} | MOVES: ${mv}`;
+      }
+    };
+
+    // 4. Initialize and Run
+    currentEngine.prepare(data, myUI);
+    printToScreen('Engine Ready. Launching Story...', 'success');
+    currentEngine.run();
+    
+    // Focus the input automatically
+    document.getElementById('game-input').focus();
+
+  } catch (err) {
+    printToScreen('BOOT FAILURE: ' + err.message, 'error');
+    console.error(err);
+  }
+}
+
+function submitCommand() {
+  const inp = document.getElementById('game-input');
+  const cmd = inp.value.trim();
+  
+  if (!cmd || !currentEngine) return;
+
+  // Visual feedback
+  printToScreen('> ' + cmd.toUpperCase(), 'player-input');
+  inp.value = '';
+
+  // Send the input string to the Z-Machine Engine
+  // ifvms uses deliver_input to process the line
+  if (currentEngine.deliver_input) {
+    currentEngine.deliver_input(cmd);
+  } else if (currentEngine.provideInput) {
+    currentEngine.provideInput(cmd);
+  }
+}
+
+// Event Listeners
+document.getElementById('game-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitCommand();
+});
+
+// Render the Arcade Grid
+const grid = document.getElementById('game-grid');
+GAMES.forEach(g => {
+  const card = document.createElement('div');
+  card.className = 'game-card';
+  card.onclick = () => startGame(g.id);
+  card.innerHTML = `
+    <div class="card-title">${g.title}</div>
+    <div style="color:var(--text-dim); font-size:0.8rem; margin-bottom:10px;">AUTHOR: ${g.author}</div>
+    <button class="play-btn">START</button>
+  `;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
