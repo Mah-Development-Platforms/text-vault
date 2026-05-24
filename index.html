@@ -652,7 +652,7 @@ let currentEngine = null;
 async function startGame(id) {
   const g = GAMES.find(x => x.id === id);
   
-  // UI Setup
+  // UI Cleanup
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelector('main').style.display = 'none';
   document.getElementById('game-player').classList.add('active');
@@ -663,54 +663,51 @@ async function startGame(id) {
     const buffer = await response.arrayBuffer();
     const data = new Uint8Array(buffer);
 
-    // 1. ADVANCED DIAGNOSTICS
     print('--- ENGINE COLD BOOT ---', 'system');
     print(`Load Address: ${g.file}`, 'system');
-    print(`Actual Size: ${data.length} bytes`, 'system');
-    
-    // Z-Machine Files store their expected length at offset 0x1A (divided by 2 or 4)
-    const expectedSize = (data[26] << 8 | data[27]) * 2; 
-    if (expectedSize > 0 && data.length < expectedSize) {
-        print(`CRITICAL: File is truncated!`, 'error');
-        print(`Expected: ${expectedSize} bytes | Got: ${data.length}`, 'error');
-    }
+    print(`File Size: ${data.length} bytes`, 'system');
 
-    // 2. INITIALIZE ENGINE
+    // 1. Initialize Engine
     currentEngine = new ZVM();
 
-    // 3. ATTACH UI (Universal Method)
+    // 2. BULLETPROOF UI ATTACHMENT
     const myUI = {
       fatal_error: (msg) => { 
         print("!!! ENGINE FATAL ERROR !!!", 'error');
         print(msg, 'error'); 
+        console.error("Z-Machine Halted:", msg);
       },
       output: (text) => print(text, 'room-desc'),
       updateStatus: (loc, sc, mv) => {
         document.getElementById('status-location').textContent = 'LOCATION: ' + loc;
         document.getElementById('status-score').textContent = `SCORE: ${sc} | MOVES: ${mv}`;
       },
-      read: (comms) => { /* input handler */ },
+      read: (comms) => { /* Input logic */ },
       save: () => 0, restore: () => 0
     };
 
-    // Force attach to both possible property names used by different ZVM versions
+    // We attach the UI to all 3 common property names used by different Z-Machine versions
     currentEngine.ui = myUI;
-    currentEngine.set_ui?.(myUI); 
+    currentEngine.env = myUI;
+    if (currentEngine.set_ui) currentEngine.set_ui(myUI);
 
-    // 4. BOOT
+    // 3. VALIDATE HEADER BEFORE BOOTING
+    if (data.length % 128 !== 0) {
+        print("CRITICAL: File is corrupted/truncated.", 'error');
+        print("Reason: Size is not a multiple of 128.", 'error');
+        return; // Stop here so we don't trigger the undefined crash
+    }
+
     print('Checking Z-Code integrity...', 'system');
-    currentEngine.init(data);
+    currentEngine.init(data); 
+    
     print('Running...', 'success');
     currentEngine.run();
     
-    document.getElementById('game-input').focus();
-    
   } catch(error) {
     print('BOOT FAILURE: ' + error.message, 'error');
-    console.error(error);
   }
 }
-
 function exitGame() {
   document.getElementById('game-player').classList.remove('active');
   document.querySelector('main').style.display = 'block';
