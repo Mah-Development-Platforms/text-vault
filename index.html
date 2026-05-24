@@ -652,7 +652,6 @@ let currentEngine = null;
 async function startGame(id) {
   const g = GAMES.find(x => x.id === id);
   
-  // UI Setup
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.querySelector('main').style.display = 'none';
@@ -661,41 +660,46 @@ async function startGame(id) {
   player.classList.add('active');
   document.getElementById('game-title-bar').textContent = '▶ ' + g.title;
   document.getElementById('game-screen').innerHTML = '';
-  document.getElementById('status-score').textContent = 'LOADING ENGINE...';
+  document.getElementById('status-score').textContent = 'DIAGNOSTIC MODE...';
 
   try {
-    // 1. Fetch the file (using explicit relative path)
-    const response = await fetch('./scripts/' + g.file);
+    // 1. Fetch with a timestamp to completely bypass browser caching
+    const cacheBuster = Date.now();
+    const response = await fetch('./scripts/' + g.file + '?v=' + cacheBuster);
     if (!response.ok) throw new Error("Could not find " + g.file + " (HTTP " + response.status + ")");
     
     const buffer = await response.arrayBuffer();
     const data = new Uint8Array(buffer);
     
-    // 2. DIAGNOSTIC CHECK: Is this actually a Z-Machine file?
-    // A valid Z-machine file's first byte is its version (1 to 8).
-    // If it's an HTML file (starts with '<'), the first byte is 60.
-    if (data[0] < 1 || data[0] > 8) {
-        throw new Error(`File ${g.file} is corrupted. (Did you accidentally save an HTML page instead of the raw file?)`);
+    // 2. DIAGNOSTIC PRINT
+    const hexBytes = Array.from(data.slice(0, 10)).map(b => b.toString(16).padStart(2, '0').toUpperCase()).join(' ');
+    print('--- FILE DIAGNOSTICS ---', 'system');
+    print('FILE SIZE: ' + data.length + ' bytes', 'system');
+    print('FIRST 10 BYTES: ' + hexBytes, 'system');
+    
+    if (data[0] !== 3) {
+        print('SYSTEM ERROR: First byte is NOT 03.', 'error');
+        print('This file is corrupted. Git or your text editor has modified the binary data.', 'error');
+        return; // Stop here before the emulator crashes
     }
+    
+    print('FILE IS VALID! Booting Z-Machine...', 'success');
+    print('------------------------', 'system');
     
     // 3. Initialize the Engine
     currentEngine = new ZVM();
     
-    // Provide the missing UI object so the engine can report internal errors without crashing
+    // Define the error handler so it prints nicely instead of throwing "undefined"
     currentEngine.ui = {
-        fatal_error: function(msg) { throw new Error("Emulator Crash: " + msg); }
+        fatal_error: function(msg) { print("EMULATOR CRASH: " + msg, 'error'); }
     };
     
-    // Connect output and status updates
-    currentEngine.output = function(text) {
-        print(text, 'room-desc'); 
-    };
+    currentEngine.output = function(text) { print(text, 'room-desc'); };
     currentEngine.updateStatus = function(location, score, moves) {
         document.getElementById('status-location').textContent = 'LOCATION: ' + location;
         document.getElementById('status-score').textContent = `SCORE: ${score} | MOVES: ${moves}`;
     };
 
-    // 4. Run the game
     currentEngine.init(data);
     currentEngine.run();
     
