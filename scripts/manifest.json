@@ -1,128 +1,17 @@
 [
-  {"file": "scripts/1_Adventureland.Z5",
-    "title": "Adventureland",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Search for thirteen lost artifacts in an enchanted forest filled with magic and mystery."
-  },
-  {
-    "file": "scripts/2_Pirate_Adventure.Z5",
-    "title": "Pirate Adventure",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Journey from your London flat to a strange island to build a ship and recover hidden pirate treasures."
-  },
-  {
-    "file": "scripts/3_Secret_Mission.Z5",
-    "title": "Secret Mission",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Infiltrate a nuclear plant briefing room to stop the world's first automated reactor from a catastrophic meltdown."
-  },
-  {
-    "file": "scripts/4_Voodoo_Castle.Z5",
-    "title": "Voodoo Castle",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Explore a cursed castle to find the means to free Count Cristo from a fiendish voodoo hex."
-  },
-  {
-    "file": "scripts/5_The_Count.Z5",
-    "title": "The Count",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Solve the mystery of your identity in Transylvania while investigating why you were delivered a bottle of blood."
-  },
-  {
-    "file": "scripts/6_Strange_Odyssey.Z5",
-    "title": "Strange Odyssey",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Repair your ship on a small planetoid by scouring ancient ruins for parts and collecting treasures."
-  },
-  {
-    "file": "scripts/7_Mystery_Fun_House.Z5",
-    "title": "Mystery Fun House",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Locate secret plans hidden within a fun house by solving puzzles and navigating a shooting gallery."
-  },
-  {
-    "file": "scripts/8_Pyramid_Of_Doom.Z5",
-    "title": "Pyramid of Doom",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Explore a recently unearthed Egyptian pyramid to recover treasures and escape before the sands reclaim it."
-  },
-  {
-    "file": "scripts/9_Ghost_Town.Z5",
-    "title": "Ghost Town",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Search an old western ghost town and its abandoned mines for gold while avoiding vengeful spirits."
-  },
-  {
-    "file": "scripts/10_Savage_Island_Part_1.Z5",
-    "title": "Savage Island Part 1",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Survive on a tropical island by dealing with local wildlife and gathering materials to build a raft."
-  },
-  {
-    "file": "scripts/11_Savage_Island_Part_2.Z5",
-    "title": "Savage Island Part 2",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Conclude your survival journey by navigating glowing corridors and using a time machine to solve the island's final mystery."
-  },
-  {
-    "file": "scripts/12_The_Golden_Voyage.Z5",
-    "title": "The Golden Voyage",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Embark on a global quest to Persian cities and distant lands to restore a dying king's youth."
-  },
-  {
-    "file": "scripts/13_Sorcerer_of_Claymorgue_Castle.Z5",
-    "title": "Sorcerer of Claymorgue Castle",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Play as the apprentice Beanwick to retrieve the 13 Stars of Power hidden within a sorcerer's castle."
-  },
-  {
-    "file": "scripts/14_Return_to_Pirates_Isle.Z5",
-    "title": "Return to Pirate's Isle",
-    "author": "Scott Adams",
-    "genre": "Adventure International",
-    "desc": "Revisit the mysterious island to locate 13 new hidden treasures using logic and cunning."
-  },
-  {
-    "file": "scripts/15_The_Hulk.Z5",
-    "title": "The Hulk",
-    "author": "Questprobe",
-    "genre": "Adventure International",
-    "desc": "Explore the lair of the Chief Examiner as Bruce Banner and his superhuman alter-ego to collect mysterious gems."
-  },
-  {
-    "file": "scripts/16_Spiderman.Z5",
-    "title": "Spider-Man",
-    "author": "Questprobe",
-    "genre": "Adventure International",
-    "desc": "Scour the Daily Bugle building as Spider-Man to collect gems and stop iconic Marvel villains."
-  },
-  {
-    "file": "scripts/17_Buckaroo_Banzai.Z5",
-    "title": "Buckaroo Banzai",
-    "author": "Questprobe",
-    "genre": "Adventure International",
-    "desc": "Save the world by helping polymath Dr. Buckaroo Banzai defeat a band of inter-dimensional aliens."
-  },
   {
     "file": "scripts/AMindForeverWandering.z4",
     "title": "A Mind Forever Voyaging",
     "author": "Steve Meretzky",
     "genre": "Infocom",
     "desc": "An AI simulates the future to test the impact of a new government plan."
+  },
+  {
+    "file": "scripts/1_Adventureland.Z5",
+    "title": "Adventureland",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Search for thirteen lost artifacts in an enchanted forest filled with magic and mystery."
   },
   {
     "file": "scripts/Arthur-QuestForExcalibur.z6",
@@ -153,6 +42,13 @@
     "desc": "A real-time espionage thriller set in a fictional Cold War-era country."
   },
   {
+    "file": "scripts/17_Buckaroo_Banzai.Z5",
+    "title": "Buckaroo Banzai",
+    "author": "Questprobe",
+    "genre": "Adventure International",
+    "desc": "Save the world by helping polymath Dr. Buckaroo Banzai defeat a band of inter-dimensional aliens."
+  },
+  {
     "file": "scripts/Bureaucracy.z4",
     "title": "Bureaucracy",
     "author": "Douglas Adams",
@@ -181,11 +77,11 @@
     "desc": "A fantasy adventure where a novice magician must stop an evil warlock."
   },
   {
-    "file": "scripts/HitchhikersGuideToTheGalaxy.z3",
-    "title": "The Hitchhiker's Guide to the Galaxy",
-    "author": "Douglas Adams and Steve Meretzky",
-    "genre": "Infocom",
-    "desc": "A surreal comedy based on the book series."
+    "file": "scripts/9_Ghost_Town.Z5",
+    "title": "Ghost Town",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Search an old western ghost town and its abandoned mines for gold while avoiding vengeful spirits."
   },
   {
     "file": "scripts/HollywoodHijinks.z3",
@@ -237,11 +133,25 @@
     "desc": "A mystery for younger players set in a haunted Cornish castle."
   },
   {
+    "file": "scripts/7_Mystery_Fun_House.Z5",
+    "title": "Mystery Fun House",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Locate secret plans hidden within a fun house by solving puzzles and navigating a shooting gallery."
+  },
+  {
     "file": "scripts/NordAndBert.z4",
     "title": "Nord and Bert Couldn't Make Head or Tail of It",
     "author": "Jeff O'Neill",
     "genre": "Infocom",
     "desc": "A collection of wordplay-based short stories."
+  },
+  {
+    "file": "scripts/2_Pirate_Adventure.Z5",
+    "title": "Pirate Adventure",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Journey from your London flat to a strange island to build a ship and recover hidden pirate treasures."
   },
   {
     "file": "scripts/Planetfall.z3",
@@ -258,11 +168,46 @@
     "desc": "A romantic adventure set on the high seas during the age of piracy."
   },
   {
+    "file": "scripts/8_Pyramid_Of_Doom.Z5",
+    "title": "Pyramid of Doom",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Explore a recently unearthed Egyptian pyramid to recover treasures and escape before the sands reclaim it."
+  },
+  {
+    "file": "scripts/14_Return_to_Pirates_Isle.Z5",
+    "title": "Return to Pirate's Isle",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Revisit the mysterious island to locate 13 new hidden treasures using logic and cunning."
+  },
+  {
+    "file": "scripts/10_Savage_Island_Part_1.Z5",
+    "title": "Savage Island Part 1",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Survive on a tropical island by dealing with local wildlife and gathering materials to build a draft."
+  },
+  {
+    "file": "scripts/11_Savage_Island_Part_2.Z5",
+    "title": "Savage Island Part 2",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Conclude your survival journey by navigating glowing corridors and using a time machine to solve the island's final mystery."
+  },
+  {
     "file": "scripts/Seastalker.z3",
     "title": "Seastalker",
     "author": "Stu Galley and Jim Lawrence",
     "genre": "Infocom",
     "desc": "A junior-level adventure involving a submarine and a sea monster."
+  },
+  {
+    "file": "scripts/3_Secret_Mission.Z5",
+    "title": "Secret Mission",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Infiltrate a nuclear plant briefing room to stop the world's first automated reactor from a catastrophic meltdown."
   },
   {
     "file": "scripts/Sherlock-TheRiddleOfTheCrownJewels.z5",
@@ -286,11 +231,25 @@
     "desc": "The sequel to Enchanter, where you must rescue your mentor Belboz."
   },
   {
+    "file": "scripts/13_Sorcerer_of_Claymorgue_Castle.Z5",
+    "title": "Sorcerer of Claymorgue Castle",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Play as the apprentice Beanwick to retrieve the 13 Stars of Power hidden within a sorcerer's castle."
+  },
+  {
     "file": "scripts/Spellbreaker.z3",
     "title": "Spellbreaker",
     "author": "Dave Lebling",
     "genre": "Infocom",
     "desc": "The final Enchanter game, dealing with the failure of magic itself."
+  },
+  {
+    "file": "scripts/16_Spiderman.Z5",
+    "title": "Spider-Man",
+    "author": "Questprobe",
+    "genre": "Adventure International",
+    "desc": "Scour the Daily Bugle building as Spider-Man to collect gems and stop iconic Marvel villains."
   },
   {
     "file": "scripts/Starcross.z3",
@@ -307,6 +266,13 @@
     "desc": "The sequel to Planetfall, featuring the return of Floyd."
   },
   {
+    "file": "scripts/6_Strange_Odyssey.Z5",
+    "title": "Strange Odyssey",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Repair your ship on a small planetoid by scouring ancient ruins for parts and collecting treasures."
+  },
+  {
     "file": "scripts/Suspect.z3",
     "title": "Suspect",
     "author": "Dave Lebling",
@@ -321,25 +287,39 @@
     "desc": "A unique sci-fi game where you control six specialized robots from a cryogenic tank."
   },
   {
+    "file": "scripts/5_The_Count.Z5",
+    "title": "The Count",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Solve the mystery of your identity in Transylvania while investigating why you were delivered a bottle of blood."
+  },
+  {
+    "file": "scripts/12_The_Golden_Voyage.Z5",
+    "title": "The Golden Voyage",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Embark on a global quest to Persian cities and distant lands to restore a dying king's youth."
+  },
+  {
+    "file": "scripts/HitchhikersGuideToTheGalaxy.z3",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams and Steve Meretzky",
+    "genre": "Infocom",
+    "desc": "A surreal comedy based on the book series."
+  },
+  {
+    "file": "scripts/15_The_Hulk.Z5",
+    "title": "The Hulk",
+    "author": "Questprobe",
+    "genre": "Adventure International",
+    "desc": "Explore the lair of the Chief Examiner as Bruce Banner and his superhuman alter-ego to collect mysterious gems."
+  },
+  {
     "file": "scripts/TheLurkingHorror.z3",
     "title": "The Lurking Horror",
     "author": "Dave Lebling",
     "genre": "Infocom",
     "desc": "A horror story set on a university campus, inspired by Lovecraft."
-  },
-  {
-    "file": "scripts/Trinity.z4",
-    "title": "Trinity",
-    "author": "Brian Moriarty",
-    "genre": "Infocom",
-    "desc": "A sophisticated fantasy weaving together history, physics, and the atomic age."
-  },
-  {
-    "file": "scripts/Wishbringer.z3",
-    "title": "Wishbringer",
-    "author": "Brian Moriarty",
-    "genre": "Infocom",
-    "desc": "A magical quest for a beginner audience, featuring a wish-granting stone."
   },
   {
     "file": "scripts/Witness.z3",
@@ -349,11 +329,25 @@
     "desc": "A 1930s noir detective mystery."
   },
   {
-    "file": "scripts/Zork0-TheRevengeOfMegaboz.z6",
-    "title": "Zork Zero: The Revenge of Megaboz",
-    "author": "Steve Meretzky",
+    "file": "scripts/Trinity.z4",
+    "title": "Trinity",
+    "author": "Brian Moriarty",
     "genre": "Infocom",
-    "desc": "A prequel to the original Zork trilogy, featuring many mini-games."
+    "desc": "A sophisticated fantasy weaving together history, physics, and the atomic age."
+  },
+  {
+    "file": "scripts/4_Voodoo_Castle.Z5",
+    "title": "Voodoo Castle",
+    "author": "Scott Adams",
+    "genre": "Adventure International",
+    "desc": "Explore a cursed castle to find the means to free Count Cristo from a fiendish voodoo hex."
+  },
+  {
+    "file": "scripts/Wishbringer.z3",
+    "title": "Wishbringer",
+    "author": "Brian Moriarty",
+    "genre": "Infocom",
+    "desc": "A magical quest for a beginner audience, featuring a wish-granting stone."
   },
   {
     "file": "scripts/Zork1-TheGreatUndergroundEmpire.z3",
@@ -382,5 +376,12 @@
     "author": "Marc Blank and Dave Lebling",
     "genre": "Infocom",
     "desc": "The final chapter of the original trilogy, leading to a confrontation with the Dungeon Master."
+  },
+  {
+    "file": "scripts/Zork0-TheRevengeOfMegaboz.z6",
+    "title": "Zork Zero: The Revenge of Megaboz",
+    "author": "Steve Meretzky",
+    "genre": "Infocom",
+    "desc": "A prequel to the original Zork trilogy, featuring many mini-games."
   }
 ]
