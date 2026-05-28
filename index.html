@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+  // Disable the browser context menu on the main page.
+  document.addEventListener('contextmenu', function (event) {
+    if (!event.target || !event.target.closest('a, button, input, textarea, select')) {
+      event.preventDefault();
+    }
+  }, false);
+
+  // Block common developer-tool shortcuts without interrupting normal play.
+  document.addEventListener('keydown', function (event) {
+    const isDevToolsShortcut =
+      event.key === 'F12' ||
+      (event.ctrlKey && event.shiftKey && ['I', 'J', 'C'].includes(event.key.toUpperCase())) ||
+      (event.ctrlKey && event.key.toUpperCase() === 'U');
+
+    if (isDevToolsShortcut) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, false);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZORK ZONE — Text Adventure Arcade</title>
@@ -519,13 +540,22 @@ Floyd’s voice trembles slightly as he waits for you to open the door.</pre>
 <script>
 function getBaseURL() {
   const loc = window.location;
+
+  // When the page is opened directly from the filesystem, the browser exposes
+  // file:// URLs that cannot be fetched by iplayif.com. Fall back to the public
+  // GitHub Pages deployment so the arcade can still launch games.
+  if (loc.protocol === 'file:') {
+    return 'https://mah-development-platforms.github.io/text-vault/';
+  }
+
   let dir = loc.origin + loc.pathname;
   if (!dir.endsWith('/')) dir = dir.substring(0, dir.lastIndexOf('/') + 1);
   return dir;
 }
 
 function getStoryURL(file) {
-  return getBaseURL() + file;
+  const normalizedFile = String(file).replace(/^\.\//, '').replace(/^\//, '');
+  return getBaseURL() + normalizedFile;
 }
 
 function showPage(id, btn) {
