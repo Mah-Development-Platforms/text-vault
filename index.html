@@ -136,7 +136,7 @@
   nav button:hover, nav button.active { color: var(--green); background: var(--green-faint); }
   nav button.active { border-bottom: 2px solid var(--green); }
 
-  main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 1.5rem 1rem; display: flex; flex-direction: column; }
+  main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: 0.75rem 1rem 1.5rem; display: flex; flex-direction: column; }
   .page { display: none; }
   .page.active { display: block; }
 
@@ -277,6 +277,7 @@
   <button onclick="showPage('intro', this)">[ INTRO & PROJECT ]</button>
   <button onclick="showPage('scottadams', this)">[ SCOTT ADAMS ]</button>
   <button onclick="showPage('infocom', this)">[ INFOCOM ]</button>
+  <button onclick="showPage('disclaimer', this)">[ DISCLAIMER ]</button>
 </nav>
 <main>
 <div class="page active" id="page-arcade">
@@ -335,7 +336,6 @@ H   H    OOO     W W        T     OOO      P       LLLLL   A   A      Y</pre>
 <div class="player-topbar"><button class="back-btn" onclick="closePlayer()">&larr; BACK</button> <span class="player-title" id="player-title"></span></div>
 <iframe id="parchment-frame" title="Game Player" allowfullscreen="allowfullscreen">
     </iframe></div>
-</main>
 <!-- Introduction & Project Overview Page -->
 <div class="page" id="page-intro">
   <div class="about-content">
@@ -494,6 +494,23 @@ Floyd’s voice trembles slightly as he waits for you to open the door.</pre>
         <li><a href="https://archive.org/details/softwarelibrary?query=infocom" target="_blank">Archive.org: Infocom Games</a></li>
         <li><a href="https://c64online.com/publisher/infocom/" target="_blank">C64 games published by Infocom | c64online.com</a></li>
         <li><a href="https://www.ifiction.org/games/index.php?cat=2" target="_blank">iFiction.org: Infocom Games</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="page" id="page-disclaimer">
+  <div class="about-content">
+    <div class="about-section">
+      <h2>Disclaimer / Copyright Notice</h2>
+      <p><strong>NOTICE UNDER THE COPYRIGHT ACT OF CANADA</strong></p>
+      <p><strong>Authorized Educational Use Only</strong></p>
+      <p>This webpage may contain copyrighted materials (retro electronic games) made available under Section 29 (Fair Dealing for Education) and Section 30.01 (Lessons by Telecommunication) of the Copyright Act of Canada.</p>
+      <p>Access to this page is strictly restricted to students currently enrolled in <strong>ICD 2O1</strong> at <strong>Donald A. Wilson Secondary School, Whitby, Ontario</strong>.</p>
+      <p><strong>Terms of Access:</strong></p>
+      <ul>
+        <li>You may interact with and analyze these materials solely for your coursework and private study.</li>
+        <li>You are strictly prohibited from downloading, recording, copying, or distributing these files to anyone outside of this course.</li>
+        <li>In compliance with Canadian law, access to these digital materials will be permanently deactivated within 30 days of the final evaluation of this course.</li>
       </ul>
     </div>
   </div>
