@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -238,197 +238,55 @@
 </style>
 </head>
 <body>
-
 <header>
-  <div class="site-logo">ZORK ZONE</div>
-  <div class="site-tagline">► Text Adventure Arcade ◄</div>
-  <div class="header-deco">[ ESTABLISHED 1977 | PARSER ENGINE v3.2 | 100% ASCII ]</div>
-  <div class="header-ready">READY<span class="cursor"></span></div>
-</header>
-
-<nav id="main-nav">
-  <button class="active" onclick="showPage('arcade', this)">[ ARCADE ]</button>
-  <button onclick="showPage('about', this)">[ HOW TO PLAY ]</button>
-</nav>
-
-<main>
-  <div class="page active" id="page-arcade">
-    <div class="game-grid" id="game-grid"></div>
-  </div>
-
-  <div class="page" id="page-about">
-    <div class="about-content">
-      <div class="ascii-art">
- ██╗  ██╗ ██████╗ ██╗    ██╗    ████████╗ ██████╗     ██████╗ ██╗      █████╗ ██╗   ██╗
- ██║  ██║██╔═══██╗██║    ██║       ██╔══╝██╔═══██╗    ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝
- ███████║██║   ██║██║ █╗ ██║       ██║   ██║   ██║    ██████╔╝██║     ███████║ ╚████╔╝ 
- ██╔══██║██║   ██║██║███╗██║       ██║   ██║   ██║    ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  
- ██║  ██║╚██████╔╝╚███╔███╔╝       ██║   ╚██████╔╝    ██║     ███████╗██║  ██║   ██║   
- ╚═╝  ╚═╝ ╚═════╝  ╚══╝╚══╝        ╚═╝    ╚═════╝     ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝  
-      </div>
-      <div class="about-section">
-        <h2>WHAT IS TEXT ADVENTURE?</h2>
-        <p>Text adventure games (also called interactive fiction) are one of the oldest forms of computer games. You explore a world, solve puzzles, and tell your story entirely through typed commands and text descriptions.</p>
-        <p>Pioneered in the 1970s by games like ADVENTURE (Colossal Cave) and popularized by Infocom titles such as ZORK, Hitchhiker's Guide to the Galaxy, and Planetfall — this is where gaming began.</p>
-      </div>
-      <div class="about-section">
-        <h2>COMMANDS</h2>
-        <p>Type commands in plain English. The parser understands verb + noun combinations:</p>
-        <div class="cmd-list">
-          <div><span class="cmd">GO NORTH</span> / N / S / E / W / U / D</div>
-          <div><span class="cmd">LOOK</span> — describe current room</div>
-          <div><span class="cmd">EXAMINE [item]</span> — inspect something</div>
-          <div><span class="cmd">TAKE [item]</span> — pick up an object</div>
-          <div><span class="cmd">DROP [item]</span> — drop from inventory</div>
-          <div><span class="cmd">INVENTORY</span> / I — list carried items</div>
-          <div><span class="cmd">OPEN / CLOSE [thing]</span></div>
-          <div><span class="cmd">USE [item]</span> — use an item</div>
-          <div><span class="cmd">READ [item]</span> — read text</div>
-          <div><span class="cmd">HELP</span> — show this list</div>
-          <div><span class="cmd">RESTART</span> — start over</div>
-          <div><span class="cmd">QUIT</span> — exit game</div>
-        </div>
-      </div>
-      <div class="about-section">
-        <h2>TIPS FOR BEGINNERS</h2>
-        <p>• Draw a map as you go. A pencil and paper is your best friend.</p>
-        <p>• EXAMINE everything you find — even seemingly mundane objects.</p>
-        <p>• Save often (type SAVE). Some games have unwinnable states.</p>
-        <p>• READ anything with text — signs, notes, books, inscriptions.</p>
-        <p>• If stuck, try every direction, and every verb you know.</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="player-wrapper">
-    <div class="player-topbar">
-      <button class="back-btn" onclick="closePlayer()">← BACK</button>
-      <span class="player-title" id="player-title"></span>
-    </div>
-    <iframe id="parchment-frame"
-            title="Game Player"
-            allowfullscreen>
-    </iframe>
-  </div>
+<div class="site-logo">ZORK ZONE</div>
+<div class="site-tagline">► Text Adventure Arcade ◄</div>
+<div class="header-deco">[ ESTABLISHED 1977 | PARSER ENGINE v3.2 | 100% ASCII ]</div>
+<div class="header-ready"><span style="font-size: 8pt;">What shall I do now?&gt;</span><span class="cursor"></span></div>
+</header><nav id="main-nav"><button class="active" onclick="showPage('arcade', this)">[ ARCADE ]</button> <button onclick="showPage('about', this)">[ HOW TO PLAY ]</button></nav><main>
+<div class="page active" id="page-arcade">
+<div class="game-grid" id="game-grid"></div>
+</div>
+<div class="page" id="page-about">
+<div class="about-content">
+<div class="ascii-art">██╗ ██╗ ██████╗ ██╗ ██╗ ████████╗ ██████╗ ██████╗ ██╗ █████╗ ██╗ ██╗ ██║ ██║██╔═══██╗██║ ██║ ██╔══╝██╔═══██╗ ██╔══██╗██║ ██╔══██╗╚██╗ ██╔╝ ███████║██║ ██║██║ █╗ ██║ ██║ ██║ ██║ ██████╔╝██║ ███████║ ╚████╔╝ ██╔══██║██║ ██║██║███╗██║ ██║ ██║ ██║ ██╔═══╝ ██║ ██╔══██║ ╚██╔╝ ██║ ██║╚██████╔╝╚███╔███╔╝ ██║ ╚██████╔╝ ██║ ███████╗██║ ██║ ██║ ╚═╝ ╚═╝ ╚═════╝ ╚══╝╚══╝ ╚═╝ ╚═════╝ ╚═╝ ╚══════╝╚═╝ ╚═╝ ╚═╝</div>
+<div class="about-section">
+<h2>WHAT IS TEXT ADVENTURE?</h2>
+<p>Text adventure games (also called interactive fiction) are one of the oldest forms of computer games. You explore a world, solve puzzles, and tell your story entirely through typed commands and text descriptions.</p>
+<p>Pioneered in the 1970s by games like ADVENTURE (Colossal Cave) and popularized by Infocom titles such as ZORK, Hitchhiker's Guide to the Galaxy, and Planetfall &mdash; this is where gaming began.</p>
+</div>
+<div class="about-section">
+<h2>COMMANDS</h2>
+<p>Type commands in plain English. The parser understands verb + noun combinations:</p>
+<div class="cmd-list">
+<div><span class="cmd">GO NORTH</span> / N / S / E / W / U / D</div>
+<div><span class="cmd">LOOK</span> &mdash; describe current room</div>
+<div><span class="cmd">EXAMINE [item]</span> &mdash; inspect something</div>
+<div><span class="cmd">TAKE [item]</span> &mdash; pick up an object</div>
+<div><span class="cmd">DROP [item]</span> &mdash; drop from inventory</div>
+<div><span class="cmd">INVENTORY</span> / I &mdash; list carried items</div>
+<div><span class="cmd">OPEN / CLOSE [thing]</span></div>
+<div><span class="cmd">USE [item]</span> &mdash; use an item</div>
+<div><span class="cmd">READ [item]</span> &mdash; read text</div>
+<div><span class="cmd">HELP</span> &mdash; show this list</div>
+<div><span class="cmd">RESTART</span> &mdash; start over</div>
+<div><span class="cmd">QUIT</span> &mdash; exit game</div>
+</div>
+</div>
+<div class="about-section">
+<h2>TIPS FOR BEGINNERS</h2>
+<p>&bull; Draw a map as you go. A pencil and paper is your best friend.</p>
+<p>&bull; EXAMINE everything you find &mdash; even seemingly mundane objects.</p>
+<p>&bull; Save often (type SAVE). Some games have unwinnable states.</p>
+<p>&bull; READ anything with text &mdash; signs, notes, books, inscriptions.</p>
+<p>&bull; If stuck, try every direction, and every verb you know.</p>
+</div>
+</div>
+</div>
+<div id="player-wrapper">
+<div class="player-topbar"><button class="back-btn" onclick="closePlayer()">&larr; BACK</button> <span class="player-title" id="player-title"></span></div>
+<iframe id="parchment-frame" title="Game Player" allowfullscreen="allowfullscreen">
+    </iframe></div>
 </main>
-
-<script>
-// Helpers
-function getBaseURL() {
-  const loc = window.location;
-  let dir = loc.origin + loc.pathname;
-  if (!dir.endsWith('/')) dir = dir.substring(0, dir.lastIndexOf('/') + 1);
-  return dir;
-}
-
-function getStoryURL(file) {
-  return getBaseURL() + file;
-}
-
-function showPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('player-wrapper').classList.remove('active');
-  document.getElementById('main-nav').style.display = 'flex';
-  const page = document.getElementById('page-' + id);
-  if (page) page.classList.add('active');
-  if (btn) {
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-}
-
-function startGame(file, title) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('main-nav').style.display = 'none';
-  document.getElementById('player-title').textContent = title;
-  document.getElementById('player-wrapper').classList.add('active');
-  const storyURL = getStoryURL(file);
-  const parchmentURL = 'https://iplayif.com/?story=' + encodeURIComponent(storyURL);
-  document.getElementById('parchment-frame').src = parchmentURL;
-}
-
-function closePlayer() {
-  document.getElementById('parchment-frame').src = '';
-  showPage('arcade', document.querySelector('nav button'));
-}
-
-// Card renderer - Updated layout and high-contrast styles
-function buildCard(game) {
-  const file   = game.file;
-  const title  = game.title  || fileToTitle(file);
-  const author = game.author || 'Unknown';
-  const genre  = game.genre  || formatToGenre(file);
-  const desc   = game.desc   || '';
-
-  const card = document.createElement('div');
-  card.className = 'game-card';
-  card.onclick = () => startGame(file, title);
-  
-  card.innerHTML = `
-    <div class="card-title" style="margin-top:0; font-size: 1.8rem; color: var(--green);">${title}</div>
-    <div style="color: var(--amber); font-family: 'VT323', monospace; font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 1px;">
-      BY ${author.toUpperCase()}
-    </div>
-    ${desc ? `
-      <div style="
-        color: #e0ffe0; 
-        font-size: 0.95rem; 
-        line-height: 1.5; 
-        margin-bottom: 1.2rem; 
-        text-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
-        font-family: 'Share Tech Mono', monospace;
-      ">
-        ${desc}
-      </div>` : ''}
-    
-    <div style="border-top: 1px solid var(--border); padding-top: 0.8rem; display: flex; justify-content: space-between; align-items: center;">
-      <span style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 1px;">[ ${genre} ]</span>
-      <button class="play-btn" onclick="event.stopPropagation();startGame('${file}','${title.replace(/'/g,"\\'")}')">▶ PLAY</button>
-    </div>
-  `;
-  return card;
-}
-
-function fileToTitle(file) {
-  return file.split('/').pop().replace(/\.[^.]+$/, '').toUpperCase();
-}
-
-function formatToGenre(file) {
-  const ext = file.split('.').pop().toLowerCase();
-  const map = { z3:'Z-MACHINE', z4:'Z-MACHINE', z5:'Z-MACHINE', z6:'Z-MACHINE', z8:'Z-MACHINE', zblorb:'BLORB', gblorb:'BLORB', ulx:'GLULX' };
-  return map[ext] || 'INTERACTIVE FICTION';
-}
-
-const FALLBACK_GAMES = [
-  { file: 'scripts/zork1.z3', title: 'ZORK I: THE GREAT UNDERGROUND EMPIRE', author: 'Marc Blank and Dave Lebling', genre: 'Z-MACHINE', desc: 'The classic dungeon crawl that started it all.' }
-];
-
-async function loadArcade() {
-  const grid = document.getElementById('game-grid');
-  grid.innerHTML = '<div style="color:var(--text-dim);font-size:0.8rem;padding:1rem;">// SCANNING SCRIPTS DIRECTORY...</div>';
-
-  let games = null;
-
-  try {
-    const res = await fetch(getBaseURL() + 'scripts/manifest.json?v=' + Date.now());
-    if (!res.ok) throw new Error('no manifest');
-    games = await res.json();
-    games = games.map(g => typeof g === 'string' ? { file: 'scripts/' + g } : g);
-  } catch (_) {
-    games = FALLBACK_GAMES;
-  }
-
-  grid.innerHTML = '';
-
-  if (!games.length) {
-    grid.innerHTML = '<div style="color:var(--text-dim);font-size:0.8rem;padding:1rem;">// NO STORY FILES FOUND — ADD ENTRIES TO scripts/manifest.json</div>';
-    return;
-  }
-
-  games.forEach(g => grid.appendChild(buildCard(g)));
-}
-
-loadArcade();
-</script>
 </body>
 </html>
