@@ -1,4 +1,4 @@
-name = "icd201-2026-sem2-text-vault"
+name = "text-vault"
 compatibility_date = "2026-05-29"
 workers_dev = true
 preview_urls = false
